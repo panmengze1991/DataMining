@@ -36,25 +36,6 @@ def get_step3_format():
 
     del chunks
 
-    # df = pd.concat(data_frames, ignore_index=True)
-
-    # print('group by id start')
-    # dg = df.groupby('id')
-    # data_frames = []
-    # print('sort start')
-    # for name, group in dg:
-    #     # 排序
-    #     # sorted_group = group.sort_values(['date', 'time'], ascending=True)
-    #     try:
-    #         group.loc[:, 'station'] = group.station.apply(lambda x: x[x.index('号线') + 2:len(x)])
-    #     except ValueError:
-    #         print('value error at :' + name)
-    #
-    #     data_frames.append(group)
-    #     print('group filter')
-    #
-    # print('concat start')
-
     # 合并数据
     print('start concat')
     df = pd.concat(data_frames, ignore_index=True)
@@ -71,8 +52,6 @@ def get_step3_format():
             available_id.append(a_id)
     print('end filter')
 
-    # df_id = pd.Series(list(set(df['id'].values)))
-    # df.drop(['a'], 1, inplace=True)
     df_id = pd.Series(available_id)
     return df_id
 

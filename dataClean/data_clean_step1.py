@@ -38,11 +38,6 @@ def get_clean_data(index):
 
 
 if __name__ == "__main__":
-    # pool = Pool(12)
 
     for fileIndex in range(401, 431, 1):
         get_clean_data(fileIndex)
-        # pool.apply_async(get_clean_data, (fileIndex,))
-
-    # pool.close()
-    # pool.join()

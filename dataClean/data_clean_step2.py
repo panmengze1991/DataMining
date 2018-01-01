@@ -14,18 +14,7 @@ indexWorkDay = ['13', '14', '15', '20', '21', '22']
 
 # 返回筛选后的合适用户数据集
 def do_filter(group):
-    # if len(set(group['type'].values)) == 1 and '地铁' in group['type'].values:
-    #     return group
     if len(group) == 4:
-        # try:
-        #     new_group = group.copy()
-        #     new_group.loc[:, 'station'] = group.loc[:, 'station'].apply(lambda x: x[x.index('号') + 2:len(x)])
-        #     # group.station = group.station.apply(lambda x: x[x.index('号') + 2:len(x)])
-        #     # group = group.station.apply(lambda x: x['station'][x.index('号线') + 2:len(x)])
-        #     return new_group
-        # except ValueError or AttributeError:
-        #     print('error')
-        # return None
         return group
 
 
@@ -49,16 +38,11 @@ def get_step2_data(index):
     # count = 0
     for name, group in data_group:
         chunks.append(do_filter(group))
-        # count += 1
-        # if count == 1000:
-        #     print("1000 apply")
-        #     count = 0
 
     df = pd.concat(chunks, ignore_index=True)
     df2 = df.copy()
     df2.loc[:, 'station'] = df.loc[:, 'station'].apply(lambda x: x[x.index('号') + 2:len(x)])
     return df2
-    # df.to_csv(output_path, index=None)
 
 
 if __name__ == "__main__":
@@ -72,9 +56,6 @@ if __name__ == "__main__":
 
         output_path = outputPre + outputName + fileType
         print('step1_result' + str(fileIndex) + 'complete. Saving Data...  use ' + str(time.time() - start_time) + "s")
-
-        # 将数据写到输出文件中
-        # step2_result.to_csv(outputPre + outputName + fileType)
 
         # 将数据存入内存中
         result_buffer.append(result_temp)
